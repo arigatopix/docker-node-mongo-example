@@ -1,0 +1,18 @@
+# docker-compose เอาไว้แยก services แยก container ของ node กับ mongo ออกมา แล้ว map หากัน
+# คล้ายๆ คำสั่ง bind mount เพื่อเอา folder host sync กับ folder ใน container docker run -d -p 80:3000 -v $(pwd):/site dockeruser/container_name:tag
+
+version: "3"
+services:
+  app:
+    container_name: docker-node-mongo
+    restart: always
+    build: .
+    ports:
+      - "80:3000"
+    links:
+      - mongo # link ไปเรียก mongo container
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
