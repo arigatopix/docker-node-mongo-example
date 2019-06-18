@@ -1,4 +1,5 @@
-# สร้าง image ของ node-mongo
+# สร้าง image ของ node app สุดท้าย run แล้วจะถามหา services ของ mongo (คนละ port)
+# จะถูก map หากันด้วย docker-compose
 
 # คำสั่งเมื่อ run container ของ nodejs
 FROM node:10
@@ -9,6 +10,7 @@ WORKDIR /urs/src/app
 # copy package.json และ package-lock.json ไปไว้ใน /app
 COPY package*.json ./
 
+# install dependencies ใน container
 RUN npm install 
 
 # copy ในโฟลเดอร์ปัจจุบันใน host ไปไว้ใน container 
